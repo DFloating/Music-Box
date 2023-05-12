@@ -2,15 +2,10 @@ import axios from "axios";
 
 import { useEffect, useState } from "react";
 
-
+const client_id = 'c9cf6d49f751465e83d620840d69e274';
+const client_secret = '773eac77730f4e158c724ca72918b30c';
 
 function MusicBox() {
-
-
-  const CLIENT_ID = '5795039be3b54e30a77e1acf68fa0782';
-  const REDIRECT_URI = 'http://localhost:5173';
-  const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
-  const RESPONSE_TYPE = 'token';
 
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
@@ -21,7 +16,7 @@ function MusicBox() {
     let token = window.localStorage.getItem("token");
 
     if(!token && hash) {
-      token = hash.substring(1).split("&").find(elem => e.startsWith("access_token")).split("=")[1];
+      token = hash.substring(1).split("&").find(e => e.startsWith("access_token")).split("=")[1];
 
       window.location.hash = "";
       window.localStorage.setItem("token", token);
@@ -30,7 +25,10 @@ function MusicBox() {
 
   }, []);
 
-
+  const CLIENT_ID = '5795039be3b54e30a77e1acf68fa0782';
+  const REDIRECT_URI = 'http://localhost:5173';
+  const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
+  const RESPONSE_TYPE = 'token';
 
   const logout = () => {
     setToken("");
@@ -81,6 +79,6 @@ function MusicBox() {
 
     </div>
   );
-}
+};
 
 export default MusicBox;
