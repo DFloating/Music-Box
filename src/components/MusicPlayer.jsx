@@ -5,11 +5,24 @@ import RoveRanger from "../assets/RoveRanger.mp3"    // icons for play and pause
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";                // icons for next and previous track
 import { IconContext } from "react-icons";                                  // for customising the icons
 
-const [isPlaying, setIsPlaying] = useState(false);                          // store the current status of the player 
-const [play, { pause, duration, sound }] = useSound(RoveRanger);                 // initialize the audio with play, pause, durationn and sound method
+// const [isPlaying, setIsPlaying] = useState(false);                          // store the current status of the player 
+// const [play, { pause, duration, sound }] = useSound(RoveRanger);                 // initialize the audio with play, pause, durationn and sound method
 
                                                                             //-> sound will provide us with the howler.js method (research)
-const MusicPlayer = () => {                                                 // function for handling the play/pause buttons 
+const MusicPlayer = () => {
+const [isPlaying, setIsPlaying] = useState(false);   
+const [play, { pause, duration, sound }] = useSound(RoveRanger);
+ 
+                                                // function for handling the play/pause buttons 
+const playingButton = () => {
+    setIsPlaying(!isPlaying);
+    if (!isPlaying) {
+      play();
+    } else {
+      pause();
+    }
+  };
+
 
 return (
     <div className="component">
@@ -19,8 +32,8 @@ return (
       src="https://picsum.photos/200/200"                                   // to be replaced with spotify artist image
     />
     <div>
-      <h3 className="title">Lausse</h3>
-      <p className="subTitle">Drink with the Leaves</p>
+      <h3 className="title">Jordy</h3>
+      <p className="subTitle">RoveRanger</p>
     </div>
     <div>
       <button className="playButton">
