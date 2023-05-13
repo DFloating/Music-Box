@@ -3,9 +3,6 @@ import axios from "axios";
 
 import { useEffect, useState } from "react";
 
-const client_id = 'c9cf6d49f751465e83d620840d69e274';
-const client_secret = '773eac77730f4e158c724ca72918b30c';
-
 function MusicBox() {
 
   const [token, setToken] = useState("");
