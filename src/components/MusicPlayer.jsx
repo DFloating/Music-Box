@@ -7,8 +7,7 @@ import { IconContext } from "react-icons";                                  // f
 
 // const [isPlaying, setIsPlaying] = useState(false);                          // store the current status of the player 
 // const [play, { pause, duration, sound }] = useSound(RoveRanger);                 // initialize the audio with play, pause, durationn and sound method
-
-                                                                            //-> sound will provide us with the howler.js method (research)
+  //-> sound will provide us with the howler.js method (research)
 const MusicPlayer = () => {
 const [isPlaying, setIsPlaying] = useState(false);   
 const [play, { pause, duration, sound }] = useSound(RoveRanger);
@@ -36,26 +35,26 @@ return (
       <p className="subTitle">RoveRanger</p>
     </div>
     <div>
-      <button className="playButton">
-        <IconContext.Provider value={{ size: "3em", color: "#27AE60" }}>
+      <button className="btn btn-danger">
+        <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
           <BiSkipPrevious />
         </IconContext.Provider>
       </button>
       {!isPlaying ? (
-        <button className="playButton" onClick={playingButton}>
-          <IconContext.Provider value={{ size: "3em", color: "#27AE60" }}>
+        <button className="btn btn-primary btn-lg" onClick={playingButton}>
+          <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
             <AiFillPlayCircle />
           </IconContext.Provider>
         </button>
       ) : (
-        <button className="playButton" onClick={playingButton}>
-          <IconContext.Provider value={{ size: "3em", color: "#27AE60" }}>
+        <button className="btn btn-info" onClick={playingButton}>
+          <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
             <AiFillPauseCircle />
           </IconContext.Provider>
         </button>
       )}
-      <button className="playButton">
-        <IconContext.Provider value={{ size: "3em", color: "#27AE60" }}>
+      <button className="btn btn-danger">
+        <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
           <BiSkipNext />
         </IconContext.Provider>
       </button>

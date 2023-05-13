@@ -1,3 +1,17 @@
+body {
+  background: blanchedalmond;
+  display: grid;
+  text-align: center;
+}
+
+/* h2{
+  text-align: center;
+}
+
+h3 {
+  text-align:  center;
+} */
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -25,7 +39,7 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
+  display: center;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
@@ -34,6 +48,7 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  color: #535bf2;
 }
 
 button {
