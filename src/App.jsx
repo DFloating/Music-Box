@@ -11,7 +11,7 @@ function App() {
       <BrowserRouter>
         <nav>
           <ul>
-            <li><Link to="/MusicBox">Music Box</Link></li>
+            <li><Link to="/">Music Box</Link></li>
             <li><Link to="/MusicList">Music List</Link></li>
             <li><Link to="/MusicShow">Music Show</Link></li>
           </ul>
