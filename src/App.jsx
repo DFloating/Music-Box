@@ -5,8 +5,23 @@ import MusicShow from './components/MusicShow';
 import MusicPlayer from './components/MusicPlayer';
 import WaveFormTest from './components/WaveFormTest';
 import 'bootstrap/dist/css/bootstrap.css';
+import { useEffect, useState } from "react";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient("https://mlkeyxaswemirdbuvayj.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1sa2V5eGFzd2VtaXJkYnV2YXlqIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODQxMzIyMjIsImV4cCI6MTk5OTcwODIyMn0.S7uBPYJgm3OEYg5SJzuUHQ3xkTGHkm_NTJpwovAFXJg");
 
 function App() {
+  const [songs, setSongs] = useState([]);
+
+  useEffect(() => {
+    getSongs();
+  }, []);
+
+  async function getSongs() {
+    const { data } = await supabase.from("songs").select();
+    setSongs(data);
+  }
+
   return (
     <div className="routes">  
       <BrowserRouter>

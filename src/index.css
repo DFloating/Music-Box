@@ -1,8 +1,14 @@
+* {
+  border: 0.1px solid black
+}
+
 body {
-  background: slategray;
+  background: white;
   display: grid;
   text-align: center;
 }
+
+
 
 /* h2{
   text-align: center;
@@ -11,6 +17,27 @@ body {
 h3 {
   text-align:  center;
 } */
+
+/* .App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.component {
+  background-color: white;
+  width: 25%;
+  max-width: 600px;
+  margin: 1em auto;
+  padding-bottom: 2em;
+  border: 0.1px solid black;
+  border-radius: 10px;
+} */
+
+.musicCover {
+  border-radius: 10%;
+  border: 0.1px solid black;
+
+}
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
