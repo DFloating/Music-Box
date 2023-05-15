@@ -144,8 +144,10 @@ const WaveFormTest = () => {
     isPlaying: () => false,
   })
   const [isPlaying, setIsPlaying] = useState(false);
-  const [play, { pause, duration, sound }] = useSound(RoveRanger);
+  const [play, { pause, duration, sound, volume }] = useSound(RoveRanger);
+  const [currentVolume, setCurrentVolume] = useState(1);
 
+  const audioRef = useRef(); // Reference to the audio element
   const waveformRef = useRef(null); // Reference to the Wavesurfer instance
 
   useEffect(() => {
@@ -168,6 +170,14 @@ const WaveFormTest = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // Update the volume when the currentVolume state changes
+    if (sound) {
+      sound.volume(currentVolume/100);
+      console.log("B", sound.volume());
+    }
+  }, [currentVolume, sound]);
+
   const playingButton = () => {
     setIsPlaying(!isPlaying);
     if (!isPlaying) {
@@ -179,11 +189,19 @@ const WaveFormTest = () => {
     }
   };
 
+  // const handleVolumeChange = (event) => {
+  //   const newVolume = parseFloat(event.target.value);
+  //   setCurrentVolume(newVolume);
+  //   // sound.volume(newVolume);
+  //   console.log("A", sound.volume());
+  // };
+
   return (
     <div className="component">
       <h2>Playing Now</h2>
       <img
         className="musicCover"
+        
         src="https://picsum.photos/200/200"
       />
       <div>
@@ -219,6 +237,20 @@ const WaveFormTest = () => {
         </button>
       </div>
       <div ref={waveformRef}></div> {/* Render the waveform visualization */}
+      <div className="volume-control">
+  <input
+    type="range"
+    min={0}
+    max={100}
+    // step={0.1}
+    value={currentVolume}
+    // min="0"
+    // max="1"
+    // step="0.1"
+    // onChange={handleVolumeChange}
+    onChange={(e) => setCurrentVolume(e.target.value)}
+  />
+</div>
     </div> 
     );
   };

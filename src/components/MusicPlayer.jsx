@@ -105,13 +105,7 @@ const MusicPlayer = () => {
                 <AiFillPlayCircle />
                 </IconContext.Provider>
          </button>
-        ) : (
-            <button className="btn btn-primary btn-lg" onClick={playingButton}>
-            <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
-              <AiFillPauseCircle />
-            </IconContext.Provider>
-          </button>
-        )}
+        ) : null}
       <button className="btn btn-danger">
         <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
           <BiSkipNext />
