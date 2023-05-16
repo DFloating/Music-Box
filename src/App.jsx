@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import MusicBox from "./components/MusicBox";
 import MusicList from './components/MusicList';
+import MusicShowAll from './components/MusicShowAll';
 import PomodoroTimer from './components/PomodoroTimer';
 import MusicPlayer from './components/MusicPlayer';
 import WaveFormTest from './components/WaveFormTest';
@@ -29,6 +30,7 @@ function App() {
           <ul className="list-group">
             <li className="list-group-item list-group-item-success"><Link to="/">Music Box</Link></li>
             <li className="list-group-item list-group-item-info"><Link to="/MusicList">Music List</Link></li>
+            <li className="list-group-item list-group-item-info"><Link to="/MusicList">Show All Music</Link></li>
             <li className="list-group-item list-group-item-warning"><Link to="/PomodoroTimer">Pomodoro Timer</Link></li>
             <li className="list-group-item list-group-item-danger"><Link to="/MusicPlayer">Music Player</Link></li>
             <li className="list-group-item list-group-item-danger"><Link to="/WaveFormTest">Waves</Link></li>
@@ -37,6 +39,7 @@ function App() {
         <Routes>
           <Route path="/" element={ <MusicBox />} />
           <Route path="/MusicList" element={ <MusicList />} />
+          <Route path="/MusicShowAll" element={ <MusicShowAll />} />
           <Route path="/PomodoroTimer" element={ <PomodoroTimer />} />
           <Route path="/MusicPlayer" element={ <MusicPlayer />} />
           <Route path="/WaveFormTest" element={ <WaveFormTest />} />
