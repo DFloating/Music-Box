@@ -1,12 +1,20 @@
-*{
+/* *{
   border: 0.1px solid black;
-}
+} */
 
 body {
-  background: white;
+  background:rgb(180, 180, 180);
   display: grid;
   text-align: center;
+  margin: 0;
+  display: center;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
 }
+
+
+
 
 /* h2{
   text-align: center;
@@ -16,13 +24,14 @@ h3 {
   text-align:  center;
 } */
 
+
 .component {
-  background-color: green;
+  background-color: rgb(240, 240, 240);
   margin: 0 auto;
   width: 0 auto;
   margin: 1em auto;
   padding-bottom: 2em;
-  border: 0.1px solid blue;
+  border: 0.1px solid black;
   border-radius: 10px;
 }
 
@@ -32,7 +41,7 @@ h3 {
 
 .subTitle {
   font-size: x-large;
-  color: whitesmoke;
+  color: grey;
 }
 
 .time {
@@ -46,7 +55,7 @@ h3 {
 
 .timeline {
   width: 80%;
-  background-color: #27ae60;
+  background-color: white;
 }
 
 input[type="range"] {
@@ -71,19 +80,11 @@ input[type="range"] {
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: grey;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: center;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  color: green;
 }
 
 h1 {
@@ -99,7 +100,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: silver;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -120,7 +121,7 @@ button:focus-visible {
     color: #747bff;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: black;
   }
 }
 
