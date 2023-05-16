@@ -5,7 +5,9 @@ import MusicShowAll from './components/MusicShowAll';
 import PomodoroTimer from './components/PomodoroTimer';
 import MusicPlayer from './components/MusicPlayer';
 import WaveFormTest from './components/WaveFormTest';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import Form from 'react-bootstrap/Form';
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 
@@ -31,7 +33,7 @@ function App() {
     const filename = `${file.name}`;
 
   const { data, error } = await supabase.storage
-  .from("test")
+  .from("MP3")
   .upload(filename, file, {
   cacheControl: "3600",
   upsert: false,
@@ -47,16 +49,18 @@ function App() {
   return (
     <div className="routes">  
       <BrowserRouter>
+      
         <nav>
-          <ul className="list-group">
-            <li className="list-group-item list-group-item-success"><Link to="/">Music Box</Link></li>
-            <li className="list-group-item list-group-item-info"><Link to="/MusicList">Music List</Link></li>
-            <li className="list-group-item list-group-item-info"><Link to="/MusicShowAll">Show All Music</Link></li>
-            <li className="list-group-item list-group-item-warning"><Link to="/PomodoroTimer">Pomodoro Timer</Link></li>
-            <li className="list-group-item list-group-item-danger"><Link to="/MusicPlayer">Music Player</Link></li>
-            <li className="list-group-item list-group-item-danger"><Link to="/WaveFormTest">Waves</Link></li>
+          <ul className="list-group list-group-horizontal">
+            <li className="list-group-item list-group-item-light"><Link to="/">Music Box</Link></li>
+            <li className="list-group-item list-group-item-light"><Link to="/MusicList">Music List</Link></li>
+            <li className="list-group-item list-group-item-light"><Link to="/MusicShowAll">Show All Music</Link></li>
+            <li className="list-group-item list-group-item-light"><Link to="/PomodoroTimer">Pomodoro Timer</Link></li>
+            <li className="list-group-item list-group-item-light"><Link to="/MusicPlayer">Music Player</Link></li>
+            <li className="list-group-item list-group-item-light"><Link to="/WaveFormTest">Waves</Link></li>
           </ul>
         </nav>
+        
         <Routes>
           <Route path="/" element={ <MusicBox />} />
           <Route path="/MusicList" element={ <MusicList />} />

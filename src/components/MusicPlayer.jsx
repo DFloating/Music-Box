@@ -59,13 +59,13 @@ const MusicPlayer = () => {
   
     return (
       <div className="component">
-        <h2>Playing Now</h2>
+        <h2 class="display-4">Playing Now</h2>
         <img
           className="musicCover"
           src="https://picsum.photos/200/200" // to be replaced with spotify artist image
         />
         <div>
-          <h3 className="title">Jordy</h3>
+          <h3 className="display-5">Jordy</h3>
           <p className="subTitle">RoveRanger</p>
         </div>
         <div>
@@ -99,8 +99,7 @@ const MusicPlayer = () => {
           {!isPlaying ? (
             <button
               className="btn btn-primary btn-lg"
-              onClick={playingButton}
-            >
+              onClick={playingButton}>
               <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
                 <AiFillPlayCircle />
                 </IconContext.Provider>
