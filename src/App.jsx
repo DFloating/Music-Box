@@ -30,7 +30,7 @@ function App() {
           <ul className="list-group">
             <li className="list-group-item list-group-item-success"><Link to="/">Music Box</Link></li>
             <li className="list-group-item list-group-item-info"><Link to="/MusicList">Music List</Link></li>
-            <li className="list-group-item list-group-item-info"><Link to="/MusicList">Show All Music</Link></li>
+            <li className="list-group-item list-group-item-info"><Link to="/MusicShowAll">Show All Music</Link></li>
             <li className="list-group-item list-group-item-warning"><Link to="/PomodoroTimer">Pomodoro Timer</Link></li>
             <li className="list-group-item list-group-item-danger"><Link to="/MusicPlayer">Music Player</Link></li>
             <li className="list-group-item list-group-item-danger"><Link to="/WaveFormTest">Waves</Link></li>
