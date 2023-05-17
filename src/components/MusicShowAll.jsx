@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
+import SongTest from './SongTest';
 
 const MusicShowAll = ({supabase}) => {
   const [songs, setSongs] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [musicList, setMusicList] = useState([]);
+  const [currentSong, setCurrentSong] = useState('');
+
+  const handleSongClick = (e) => {
+    setCurrentSong('');
+    setCurrentSong(e.target.value);
+    console.log(e.target.value);
+  }
 
   useEffect(() => {
     const selectAll = async () => {
@@ -28,7 +35,7 @@ const MusicShowAll = ({supabase}) => {
         <h3>{song.title}</h3>
         <h4>{song.artist}</h4>
         <p>{song.genre}</p>
-        <button>play {song.title}</button>
+        <button value={song.mp3} onClick={handleSongClick}>play {song.title}</button>
       </div>
     )
     
@@ -37,6 +44,8 @@ const MusicShowAll = ({supabase}) => {
 const handleChange = (e) => {
   setSearchTerm(e.target.value);
 };
+
+
 
 // Function to handle search
 const handleSearch = () => {
@@ -49,15 +58,11 @@ const handleSearch = () => {
     <div className="music-list">
       <input type="text" value={searchTerm} onChange={handleChange} />
         <button onClick={handleSearch}>Find Track</button>
-        {musicList.map((music) => (
-          <div key={music.id}>
-            <h3>{music.title}</h3>
-            <p>{music.artist}</p>
-            <p>{music.genre}</p>
-          </div>
-        ))}
       <h2>List of Songs</h2>
       {songList}
+      <button onClick={() => setCurrentSong('')}>stop</button>
+      {currentSong != '' && <SongTest supabase={supabase} songName={currentSong}/>}
+
       {/* <ul>
         {songs.map((song, index) => (
           <li key={index}>
