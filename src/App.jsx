@@ -64,17 +64,17 @@ function App() {
         <Routes>
           <Route path="/" element={ <MusicBox />} />
           <Route path="/MusicList" element={ <MusicList />} />
-          <Route path="/MusicShowAll" element={ <MusicShowAll />} />
+          <Route path="/MusicShowAll" element={ <MusicShowAll supabase={supabase}/>} />
           <Route path="/PomodoroTimer" element={ <PomodoroTimer />} />
           <Route path="/MusicPlayer" element={ <MusicPlayer />} />
           <Route path="/WaveFormTest" element={ <WaveFormTest />} />
         </Routes>
       </BrowserRouter>
 
-      <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}>
         <input type="file" name="image" onChange={handleFileSelected} />
         <button type="submit">Upload image</button>
-      </form>
+      </form> */}
     </div>
   );
 };
