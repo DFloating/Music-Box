@@ -57,7 +57,7 @@ const MusicPlayer = () => {
         <h2 class="display-6">Playing Now</h2>
         <img
           className="musicCover"
-          src="https://picsum.photos/200/200" // to be replaced with spotify artist image
+          src="https://picsum.photos/300/300" // to be replaced with spotify artist image
         />
         <div>
           <h3 className="display-5">NMDA</h3>
