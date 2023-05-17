@@ -2,7 +2,6 @@ import React from 'react';
 // import './App.css';
 import axios from 'axios';
 import { useState } from 'react';
-import MergedComponent from './MergedComponent';
 
 const MusicList = () => {
     // Define state variables

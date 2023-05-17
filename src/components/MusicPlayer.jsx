@@ -1,38 +1,19 @@
 import { useEffect, useState, useRef } from "react";
-import useSound from "use-sound";                                    // for handling the sound
-import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai"; 
-import RoveRanger from "../assets/RoveRanger.mp3"    // icons for play and pause
-import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";                // icons for next and previous track
-import { IconContext } from "react-icons";
-import WaveSurfer from "wavesurfer.js"; // Import Wavesurfer.js                                // for customising the icons
-import {Howl} from 'howler';
+import useSound from "use-sound";          // for handling the sound
+import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai"; // icons for play and pause
+import RoveRanger from "../assets/RoveRanger.mp3"    
+import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";  // icons for next and previous track
+import { IconContext } from "react-icons"; // for customising the icons
+import WaveSurfer from "wavesurfer.js"; //Import Wavesurfer.js
+import { skipForward } from "wavesurfer";
 
-const MusicPlayer = ({supabase}) => {
-  const [songLink, setSongLink] = useState("");  
 
-  useEffect(() => {
-    const publicUrl = supabase
-    .storage
-    .from('MP3')
-    .getPublicUrl('Iron Cyclone Mst.mp3')
-    setSongLink(publicUrl.data.publicUrl);
-    console.log(publicUrl);
-  }, [])
-
-  const soundPlay = (src) => {
-    const sound = new Howl({
-      src,
-      html5: true
-    })
-    sound.play();
-  }
-
-  const waveSurferRef = useRef({
+const MusicPlayer = () => {
+    const waveSurferRef = useRef({
       isPlaying: () => false,
     })
-
     const [isPlaying, setIsPlaying] = useState(false);
-    const [play, { pause, duration, sound, volume }] = useSound(songLink);
+    const [play, { pause, duration, sound, volume }] = useSound(RoveRanger);
     const [currentVolume, setCurrentVolume] = useState(1);
 
     const waveformRef = useRef(null); // Reference to the Wavesurfer instance
@@ -98,96 +79,130 @@ const MusicPlayer = ({supabase}) => {
       }, 1000);
       return () => clearInterval(interval);
     }, [sound]);
-  
-    const playingButton = () => {
-    setIsPlaying(!isPlaying);
-    if (!isPlaying) {
-      play();
-      waveSurferRef.current.play(); // Start the waveform visualization
-    } else {
-      pause();
-      waveSurferRef.current.pause(); // Pause the waveform visualization
+
+
+    const playSong = (index) => {
+      setCurrentSongIndex(index);
+      setIsPlaying(true);
+      play({
+        onsend: () => {
+          handleSkipForward();
+        },
+      });
+      waveSurferRef.current.play();
+    };
+
+    const handleSkipForward = () => {
+      if (currentSongIndex === 0) {
+        setCurrentSongIndex(songs.length - 1);
+      } else {
+        setCurrentSongIndex(currentSongIndex -1);
+      }
+      setIsPlaying(false);
+    };
+
+    const handlePlayPause = () => {
+      setIsPlaying(!isPlaying);
+      if (!isPlaying) {
+        play();
+        waveSurferRef.current.play();
+      } else {
+        pause();
+        waveSurferRef.current.pause();
+      }
     }
-  };
+  
+  //   const playingButton = () => {
+  //   setIsPlaying(!isPlaying);
+  //   if (!isPlaying) {
+  //     play();
+  //     waveSurferRef.current.play(); // Start the waveform visualization
+  //   } else {
+  //     pause();
+  //     waveSurferRef.current.pause(); // Pause the waveform visualization
+  //   }
+  // };
   
     return (
-      <div className="component">
-        <h2 class="display-6">Playing Now</h2>
-        <img
-          className="musicCover"
-          src="https://picsum.photos/300/300" // to be replaced with spotify artist image
-        />
-        <div>
-          <h3 className="display-5">NMDA</h3>
-          <p className="subTitle">RoveRanger</p>
-        </div>
-        <div>
-          <div className="time">
-            <p>
-              {currTime.min}:{currTime.sec}
-            </p>
-            <p>
-              {Math.floor(duration / 60000)}:
-              {Math.floor((duration / 1000) % 60)}
-            </p>
-          </div>
-          <input
-            type="range"
-            min="0"
-            max={duration / 1000}
-            defaultValue="0"
-            value={seconds}
-            className="timeline"
-            onChange={(e) => {
-              sound.seek(e.target.valueAsNumber);
-            }}
+      <div>
+        <div className="grid">
+        <div className="component">
+          <h2 className="display-6">Playing Now</h2>
+          <img
+            className="musicCover"
+            src="https://picsum.photos/200/200" // to be replaced with spotify artist image
           />
         </div>
-        <div>
-          <button className="btn btn-secondary">
-            <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
-              <BiSkipPrevious />
-            </IconContext.Provider>
-          </button>
-          {!isPlaying ? (
-            <button
-              className="btn btn-warning btn-lg"
-              onClick={playingButton}>
+      <div className="main">
+        <div className="information">
+            <h3 className="display-5">NMDA</h3>
+            <p className="subTitle">RoveRanger</p>
+        </div>
+          <div>
+            <div className="time">
+              <p>
+                {currTime.min}:{currTime.sec}
+              </p>
+              <p>
+                {Math.floor(duration / 60000)}:
+                {Math.floor((duration / 1000) % 60)}
+              </p>
+            </div>
+            <input
+              type="range"
+              min="0"
+              max={duration / 1000}
+              defaultValue="0"
+              value={seconds}
+              className="timeline"
+              onChange={(e) => {
+                sound.seek(e.target.valueAsNumber);
+              }}
+            />
+          </div>
+          <div>
+            <button className="btn btn-secondary">
               <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
-                <AiFillPlayCircle />
-                </IconContext.Provider>
-         </button>
-        ) : (
-        <button className="btn btn-danger" onClick={playingButton}>
-            <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
-              <AiFillPauseCircle />
-            </IconContext.Provider>
+                <BiSkipPrevious />
+              </IconContext.Provider>
+            </button>
+            {!isPlaying ? (
+              <button
+                className="btn btn-warning btn-lg"
+                onClick={()=> playSong(index)}>
+                <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
+                  <AiFillPlayCircle />
+                  </IconContext.Provider>
           </button>
-        )}
-      <button className="btn btn-secondary">
-        <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
-          <BiSkipNext />
-        </IconContext.Provider>
-      </button>
+          ) : (
+          <button className="btn btn-danger" onClick={handlePlayPause}>
+              <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
+                <AiFillPauseCircle />
+              </IconContext.Provider>
+            </button>
+          )}
+        <button className="btn btn-secondary" onClick={skipForward}>
+          <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
+            <BiSkipNext />
+          </IconContext.Provider>
+        </button>
+      </div>
+        <div ref={waveformRef}></div> {/* Render the waveform visualization */}
+        <div className="volume-control">
+          <input
+            type="range"
+            min={0}
+            max={100}
+            // step={0.1}
+            value={currentVolume}
+            // min="0"
+            // max="1"
+            // step="0.1"
+            // onChange={handleVolumeChange}
+            onChange={(e) => setCurrentVolume(e.target.value)}/>
+        </div>
+     </div>
     </div>
-    <div ref={waveformRef}></div> {/* Render the waveform visualization */}
-    <div className="volume-control">
-  <input
-    type="range"
-    min={0}
-    max={100}
-    // step={0.1}
-    value={currentVolume}
-    // min="0"
-    // max="1"
-    // step="0.1"
-    // onChange={handleVolumeChange}
-    onChange={(e) => setCurrentVolume(e.target.value)}
-  />
-</div>
-
-<button onClick={() => soundPlay(songLink)}>play song from supabase Url</button>
-
   </div>                                                           
     );
 }
