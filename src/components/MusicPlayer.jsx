@@ -1,14 +1,49 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import useSound from "use-sound";                                    // for handling the sound
 import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai"; 
 import RoveRanger from "../assets/RoveRanger.mp3"    // icons for play and pause
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";                // icons for next and previous track
-import { IconContext } from "react-icons";                                  // for customising the icons
+import { IconContext } from "react-icons";
+import WaveSurfer from "wavesurfer.js"; // Import Wavesurfer.js                                // for customising the icons
 
 const MusicPlayer = () => {
+    const waveSurferRef = useRef({
+      isPlaying: () => false,
+    })
     const [isPlaying, setIsPlaying] = useState(false);
-    const [play, { pause, duration, sound }] = useSound(RoveRanger);
+    const [play, { pause, duration, sound, volume }] = useSound(RoveRanger);
+    const [currentVolume, setCurrentVolume] = useState(1);
+
+    const waveformRef = useRef(null); // Reference to the Wavesurfer instance
   
+    useEffect(() => {
+      // Create Wavesurfer instance
+      const wavesurfer = WaveSurfer.create({
+        container: waveformRef.current, // Use the waveformRef to set the container
+        waveColor: "violet",
+        progressColor: "purple",
+      });
+
+            // Load the audio file
+      wavesurfer.load(RoveRanger);
+      wavesurfer.on('ready', () => {
+        waveSurferRef.current = wavesurfer;
+      });
+
+      return () => {
+        // Clean up the Wavesurfer instance when the component unmounts
+        wavesurfer.destroy();
+      };
+    }, []);
+
+    useEffect(() => {
+    // Update the volume when the currentVolume state changes
+    if (sound) {
+      sound.volume(currentVolume/100);
+      console.log("B", sound.volume());
+    }
+  }, [currentVolume, sound]);
+
     const [currTime, setCurrTime] = useState({
       min: "",
       sec: "",
@@ -44,13 +79,15 @@ const MusicPlayer = () => {
     }, [sound]);
   
     const playingButton = () => {
-      setIsPlaying(!isPlaying);
-      if (!isPlaying) {
-        play();
-      } else {
-        pause();
-      }
-    };
+    setIsPlaying(!isPlaying);
+    if (!isPlaying) {
+      play();
+      waveSurferRef.current.play(); // Start the waveform visualization
+    } else {
+      pause();
+      waveSurferRef.current.pause(); // Pause the waveform visualization
+    }
+  };
   
     return (
       <div className="component">
@@ -112,6 +149,21 @@ const MusicPlayer = () => {
         </IconContext.Provider>
       </button>
     </div>
+    <div ref={waveformRef}></div> {/* Render the waveform visualization */}
+    <div className="volume-control">
+  <input
+    type="range"
+    min={0}
+    max={100}
+    // step={0.1}
+    value={currentVolume}
+    // min="0"
+    // max="1"
+    // step="0.1"
+    // onChange={handleVolumeChange}
+    onChange={(e) => setCurrentVolume(e.target.value)}
+  />
+</div>
   </div>                                                           
     );
 }
