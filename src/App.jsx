@@ -5,6 +5,7 @@ import MusicShowAll from './components/MusicShowAll';
 import PomodoroTimer from './components/PomodoroTimer';
 import MusicPlayer from './components/MusicPlayer';
 import WaveFormTest from './components/WaveFormTest';
+import MusicUpload from './components/MusicUpload';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useEffect, useState } from "react";
@@ -38,7 +39,6 @@ function App() {
   upsert: false,
   });
 
-  const filepath = data.path;
   };
 
   const handleFileSelected = (e) => {
@@ -57,6 +57,7 @@ function App() {
               <li className="list-group-item list-group-item-light"><Link to="/PomodoroTimer">Pomodoro Timer</Link></li>
               <li className="list-group-item list-group-item-light"><Link to="/MusicPlayer">Music Player</Link></li>
               <li className="list-group-item list-group-item-light"><Link to="/WaveFormTest">Waves</Link></li>
+              <li className="list-group-item list-group-item-light"><Link to="/MusicUpload">Music Upload</Link></li>
           
         </ul>
       </div>  
@@ -68,6 +69,7 @@ function App() {
           <Route path="/PomodoroTimer" element={ <PomodoroTimer />} />
           <Route path="/MusicPlayer" element={ <MusicPlayer supabase={supabase}/>} />
           <Route path="/WaveFormTest" element={ <WaveFormTest />} />
+          <Route path="/MusicUpload" element={ <MusicUpload supabase={supabase}/>} />
         </Routes>
       </BrowserRouter>
 
