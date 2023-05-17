@@ -2,6 +2,10 @@
   display: center;
 }
 
+.blue{
+  background-color: blue;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
