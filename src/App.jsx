@@ -52,7 +52,7 @@ function App() {
         <ul className="list-group list-group-horizontal">
           
               <li className="list-group-item list-group-item-dark"><Link to="/">Music Box</Link></li>
-              <li className="list-group-item list-group-item-light"><Link to="/MusicList">Music List</Link></li>
+              {/* <li className="list-group-item list-group-item-light"><Link to="/MusicList">Music List</Link></li> */}
               <li className="list-group-item list-group-item-light"><Link to="/MusicShowAll">Show All Music</Link></li>
               <li className="list-group-item list-group-item-light"><Link to="/PomodoroTimer">Pomodoro Timer</Link></li>
               <li className="list-group-item list-group-item-light"><Link to="/MusicPlayer">Music Player</Link></li>
