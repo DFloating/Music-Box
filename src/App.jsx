@@ -6,6 +6,7 @@ import PomodoroTimer from './components/PomodoroTimer';
 import MusicPlayer from './components/MusicPlayer';
 import WaveFormTest from './components/WaveFormTest';
 import MusicUpload from './components/MusicUpload';
+import SongTest from './components/SongTest';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useEffect, useState } from "react";
@@ -58,6 +59,8 @@ function App() {
               <li className="list-group-item list-group-item-light"><Link to="/MusicPlayer">Music Player</Link></li>
               <li className="list-group-item list-group-item-light"><Link to="/WaveFormTest">Waves</Link></li>
               <li className="list-group-item list-group-item-light"><Link to="/MusicUpload">Music Upload</Link></li>
+              <li className="list-group-item list-group-item-light"><Link to="/SongTest">Song Test</Link></li>
+
           
         </ul>
       </div>  
@@ -70,6 +73,7 @@ function App() {
           <Route path="/MusicPlayer" element={ <MusicPlayer supabase={supabase}/>} />
           <Route path="/WaveFormTest" element={ <WaveFormTest />} />
           <Route path="/MusicUpload" element={ <MusicUpload supabase={supabase}/>} />
+          <Route path="/SongTest" element={ <SongTest supabase={supabase}/>} />
         </Routes>
       </BrowserRouter>
 
