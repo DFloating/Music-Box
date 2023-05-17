@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
-import MergedComponent from './MergedComponent';
 
 const MusicShowAll = ({supabase}) => {
   const [songs, setSongs] = useState([]);
