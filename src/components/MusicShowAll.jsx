@@ -23,7 +23,6 @@ const MusicShowAll = ({supabase}) => {
   }, []);
 
   const songList = songs.map((song) => {
-    console.log(song.inserted_at)
     
     return (
       <div key={song.id}>

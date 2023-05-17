@@ -5,13 +5,34 @@ import RoveRanger from "../assets/RoveRanger.mp3"    // icons for play and pause
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";                // icons for next and previous track
 import { IconContext } from "react-icons";
 import WaveSurfer from "wavesurfer.js"; // Import Wavesurfer.js                                // for customising the icons
+import {Howl} from 'howler';
 
-const MusicPlayer = () => {
-    const waveSurferRef = useRef({
+const MusicPlayer = ({supabase}) => {
+  const [songLink, setSongLink] = useState("");  
+
+  useEffect(() => {
+    const publicUrl = supabase
+    .storage
+    .from('MP3')
+    .getPublicUrl('Iron Cyclone Mst.mp3')
+    setSongLink(publicUrl.data.publicUrl);
+    console.log(publicUrl);
+  }, [])
+
+  const soundPlay = (src) => {
+    const sound = new Howl({
+      src,
+      html5: true
+    })
+    sound.play();
+  }
+
+  const waveSurferRef = useRef({
       isPlaying: () => false,
     })
+
     const [isPlaying, setIsPlaying] = useState(false);
-    const [play, { pause, duration, sound, volume }] = useSound(RoveRanger);
+    const [play, { pause, duration, sound, volume }] = useSound(songLink);
     const [currentVolume, setCurrentVolume] = useState(1);
 
     const waveformRef = useRef(null); // Reference to the Wavesurfer instance
@@ -164,6 +185,9 @@ const MusicPlayer = () => {
     onChange={(e) => setCurrentVolume(e.target.value)}
   />
 </div>
+
+<button onClick={() => soundPlay(songLink)}>play song from supabase Url</button>
+
   </div>                                                           
     );
 }
