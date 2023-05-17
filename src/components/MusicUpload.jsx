@@ -10,8 +10,12 @@ const MusicUpload = ({supabase}) => {
 
   const [file, setfile] = useState([]);
 
+  const [submitStatus, setSubmitStatus ] = useState(false);
+
   const uploadSong = async (e) => {
     e.preventDefault();
+    if (submitStatus) return alert("calm down you have already submitted");
+    setSubmitStatus(true);
     const filename = `${file.name}`;
 
     //upload song data to supabase tables
@@ -53,11 +57,16 @@ const MusicUpload = ({supabase}) => {
   return(
     <div>
       <form onSubmit={uploadSong}> 
+        <label>Title of Songs</label>
         <input type="text" name="title" required onChange={handleFormText} />
+        <label>Artist</label>
         <input type="text" name="artist" onChange={handleFormText} />
+        <label>Genre of Song</label>
         <input type="text" name="genre" onChange={handleFormText} />
+        <label>File Name</label>
         <input type="file" name="mp3" accept=".mp3,audio/*" required onChange={handleFileSelected} />
         <button type="submit">Submit Song</button>
+        <p>{submitStatus && "You have submitted a song"}</p>
       </form>
     </div>
   )
