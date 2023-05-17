@@ -6,12 +6,24 @@ import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";                // i
 import { IconContext } from "react-icons";
 import WaveSurfer from "wavesurfer.js"; // Import Wavesurfer.js                                // for customising the icons
 
-const MusicPlayer = () => {
-    const waveSurferRef = useRef({
+const MusicPlayer = ({supabase}) => {
+  const [songLink, setSongLink] = useState("");  
+
+  useEffect(() => {
+    const publicUrl = supabase
+    .storage
+    .from('MP3')
+    .getPublicUrl('Iron Cyclone Mst.mp3')
+    setSongLink(publicUrl.data.publicUrl);
+    console.log(publicUrl);
+  }, [])
+
+  const waveSurferRef = useRef({
       isPlaying: () => false,
     })
+
     const [isPlaying, setIsPlaying] = useState(false);
-    const [play, { pause, duration, sound, volume }] = useSound(RoveRanger);
+    const [play, { pause, duration, sound, volume }] = useSound(songLink);
     const [currentVolume, setCurrentVolume] = useState(1);
 
     const waveformRef = useRef(null); // Reference to the Wavesurfer instance

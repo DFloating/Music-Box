@@ -66,7 +66,7 @@ function App() {
           <Route path="/MusicList" element={ <MusicList />} />
           <Route path="/MusicShowAll" element={ <MusicShowAll supabase={supabase}/>} />
           <Route path="/PomodoroTimer" element={ <PomodoroTimer />} />
-          <Route path="/MusicPlayer" element={ <MusicPlayer />} />
+          <Route path="/MusicPlayer" element={ <MusicPlayer supabase={supabase}/>} />
           <Route path="/WaveFormTest" element={ <WaveFormTest />} />
         </Routes>
       </BrowserRouter>
