@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import MergedComponent from './MergedComponent';
 import SongTest from './SongTest';
+import MusicPlayer from './MusicPlayer';
 
 const MusicShowAll = ({supabase}) => {
   const [songs, setSongs] = useState([]);
@@ -57,6 +58,7 @@ const handleSearch = () => {
 
   return (
     <div className="music-list">
+      <MusicPlayer supabase={supabase} />
       <input type="text" value={searchTerm} onChange={handleChange} />
         <button onClick={handleSearch}>Find Track</button>
       <h2>List of Songs</h2>
