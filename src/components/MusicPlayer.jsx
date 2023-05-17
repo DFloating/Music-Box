@@ -5,6 +5,7 @@ import RoveRanger from "../assets/RoveRanger.mp3"    // icons for play and pause
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";                // icons for next and previous track
 import { IconContext } from "react-icons";
 import WaveSurfer from "wavesurfer.js"; // Import Wavesurfer.js                                // for customising the icons
+import {Howl} from 'howler';
 
 const MusicPlayer = ({supabase}) => {
   const [songLink, setSongLink] = useState("");  
@@ -17,6 +18,14 @@ const MusicPlayer = ({supabase}) => {
     setSongLink(publicUrl.data.publicUrl);
     console.log(publicUrl);
   }, [])
+
+  const soundPlay = (src) => {
+    const sound = new Howl({
+      src,
+      html5: true
+    })
+    sound.play();
+  }
 
   const waveSurferRef = useRef({
       isPlaying: () => false,
@@ -176,6 +185,9 @@ const MusicPlayer = ({supabase}) => {
     onChange={(e) => setCurrentVolume(e.target.value)}
   />
 </div>
+
+<button onClick={() => soundPlay(songLink)}>play song from supabase Url</button>
+
   </div>                                                           
     );
 }
