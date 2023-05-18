@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import {Howl} from 'howler';
 
-const SongTest = ({supabase, songName}) => {
+const SongTest = ({supabase, songName, title, artist}) => {
   const [songLink, setSongLink] = useState(""); 
   const [isPlaying, setIsPlaying] = useState(false);
   const [tracks, setTracks] = useState([]);
@@ -66,6 +66,17 @@ const SongTest = ({supabase, songName}) => {
       setIsPlaying(false);
     }
   };
+
+  const fastForward = () => {
+    const skipAmount = 5;
+    sound.seek(Math.min(sound.seek() + skipAmount, sound.duration()));
+  };
+
+  const slowBackward = () => {
+    const skipAmount = 5;
+    sound.seek(Math.max(sound.seek() - skipAmount, 0));
+  };
+
     return (
       <div className="component">
         <div>
@@ -79,14 +90,14 @@ const SongTest = ({supabase, songName}) => {
         </div>
       <div className="main">
         <div className="information">
-            <h3 className="display-5">{songName}</h3>
-            <p className="subTitle">RoveRanger</p>
+            <h3 className="display-5">{title}</h3>
+            <p className="subTitle">{artist}</p>
         </div>
           <div>
           </div>
           <div>
-            <button className="btn btn-secondary">
-              Back
+            <button className="btn btn-secondary" onClick={slowBackward}>
+              Rewind
             </button>
               <button className="btn btn-warning btn-lg" onClick={handlePlaySong} > 
                 Play
@@ -95,7 +106,7 @@ const SongTest = ({supabase, songName}) => {
           <button className="btn btn-danger" onClick={soundPause} >
             Pause
             </button>
-        <button className="btn btn-secondary" >
+        <button className="btn btn-secondary" onClick={fastForward} >
             forward
         </button>
         <button onClick={soundStop}>Stop song</button>

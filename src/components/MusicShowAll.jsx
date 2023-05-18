@@ -5,12 +5,15 @@ import SongTest from './SongTest';
 const MusicShowAll = ({supabase}) => {
   const [songs, setSongs] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [currentSong, setCurrentSong] = useState(null);
+  const [currentSongMp3, setCurrentSongMp3] = useState(null);
+  const [currentSongTitle, setCurrentSongTitle] = useState('');
+  const [currentSongArtist, setCurrentSongArtist] = useState('');
 
-  const handleSongClick = (e) => {
-    setCurrentSong(null);
-    setCurrentSong(e.target.value);
-    console.log(e.target.value);
+  const handleSongClick = (song) => {
+    console.log(song);
+    setCurrentSongMp3(song.mp3);
+    setCurrentSongTitle(song.title);
+    setCurrentSongArtist(song.artist);
   }
 
   useEffect(() => {
@@ -35,7 +38,7 @@ const MusicShowAll = ({supabase}) => {
         <h3>{song.title}</h3>
         <h4>{song.artist}</h4>
         <p>{song.genre}</p>
-        <button value={song.mp3} onClick={handleSongClick}>play {song.title}</button>
+        <button onClick={() => handleSongClick(song)}>play {song.title}</button>
       </div>
     )
     
@@ -61,12 +64,16 @@ const handleSearch = () => {
         <button onClick={handleSearch}>Find Track</button>
       <h2>List of Songs</h2>
       {songList}
-      <button onClick={() => setCurrentSong(null)}>stop</button>
       <div>          
           <div className='grid'>
             
               <div className="music-list">
-                {currentSong != null && <SongTest supabase={supabase} songName={currentSong}/>}
+                {currentSongMp3 != null && 
+                <SongTest supabase={supabase} 
+                  songName={currentSongMp3} 
+                  title={currentSongTitle} 
+                  artist={currentSongArtist}/>
+                }
 
               </div>
               <div className='musicSearch'>
@@ -76,7 +83,7 @@ const handleSearch = () => {
               <div className='musicList'>
                 <h2>List of Songs</h2>
                     {songList}
-                    <button onClick={() => setCurrentSong('')}>stop</button>
+                    <button onClick={() => setCurrentSongMp3('')}>stop</button>
               </div>
           
           </div>
