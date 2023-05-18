@@ -60,10 +60,6 @@ const MusicShowAll = ({supabase}) => {
   return (
     <div className="music-list">
 
-      <input type="text" value={searchTerm} onChange={handleChange} />
-        <button onClick={handleSearch}>Find Track</button>
-      <h2>List of Songs</h2>
-      {songList}
       <div>          
           <div className='grid'>
             
