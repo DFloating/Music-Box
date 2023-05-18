@@ -124,9 +124,9 @@ const MusicPlayer = () => {
   // };
   
     return (
-      <div>
+    
 
-        <div className="grid">
+        <div className="parent">
 
           <div className="component">
                 <h2 className="display-6">Playing Now</h2>
@@ -157,7 +157,7 @@ const MusicPlayer = () => {
                   }}
                 />
           
-            <div className="buttons ">
+            <div className="buttons">
                 <button className="btn btn-secondary">
                   <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
                     <BiSkipPrevious />
@@ -202,7 +202,7 @@ const MusicPlayer = () => {
           </div>
         </div>
 
-      </div>                                                           
+                                                             
     );
 }
 

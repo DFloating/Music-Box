@@ -3,9 +3,12 @@ import { createClient } from '@supabase/supabase-js';
 import SongTest from './SongTest';
 import MusicList from './MusicList';
 
+
+
 const MusicShowAll = ({supabase}) => {
   const [songs, setSongs] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [currentSong, setCurrentSong] = useState('');
   const [currentSongMp3, setCurrentSongMp3] = useState(null);
   const [currentSongTitle, setCurrentSongTitle] = useState('');
   const [currentSongArtist, setCurrentSongArtist] = useState('');
@@ -57,35 +60,30 @@ const MusicShowAll = ({supabase}) => {
 
 
 
-  return (
-    <div className="music-list">
-
-      <div>          
-          <div className='grid'>
-            
-              <div className="music-list">
-                {currentSongMp3 != null && 
+  return (         
+              
+      <div>
+            <div className='import'>                
                 <SongTest supabase={supabase} 
                   songName={currentSongMp3} 
                   title={currentSongTitle} 
-                  artist={currentSongArtist}/>
-                }
-
+                  artist={currentSongArtist}
+                  />                
+            </div>
+            <div className="grid">              
+              <div className="musicSearch">              
+                <MusicList />
               </div>
-              <div className='musicSearch'>
-               <MusicList/>
-              </div>
-              <div className='musicList'>
+              <div className="musicList">
                 <h2>List of Songs</h2>
                     {songList}
                     <button onClick={() => setCurrentSongMp3('')}>stop</button>
+                    {/* {currentSong != '' && <SongTest supabase={supabase} songName={currentSong}/>} */}
               </div>
-          
-          </div>
-
+            </div>
       </div>
-    </div>
   );
-};
+
+}
 
 export default MusicShowAll;

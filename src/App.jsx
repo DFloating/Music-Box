@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import MusicBox from "./components/MusicBox";
 import MusicList from './components/MusicList';
 import MusicShowAll from './components/MusicShowAll';
-import PomodoroTimer from './components/PomodoroTimer';
 import MusicPlayer from './components/MusicPlayer';
 import WaveFormTest from './components/WaveFormTest';
 import MusicUpload from './components/MusicUpload';
@@ -52,14 +51,14 @@ function App() {
       <div className="nav test">
         <ul className="list-group list-group-horizontal">
           
-              <li className="list-group-item list-group-item-dark"><Link to="/">Music Box</Link></li>
+              <li className="list-group-item list-group-item-primary"><Link to="/">Music Box</Link></li>
               {/* <li className="list-group-item list-group-item-light"><Link to="/MusicList">Music List</Link></li> */}
-              <li className="list-group-item list-group-item-light"><Link to="/MusicShowAll">Show All Music</Link></li>
+              <li className="list-group-item list-group-item-primary"><Link to="/MusicShowAll">Home Page</Link></li>
               {/* <li className="list-group-item list-group-item-light"><Link to="/PomodoroTimer">Pomodoro Timer</Link></li> */}
-              <li className="list-group-item list-group-item-light"><Link to="/MusicPlayer">Music Player</Link></li>
+              <li className="list-group-item list-group-item-primary"><Link to="/MusicPlayer">Music Player</Link></li>
               {/* <li className="list-group-item list-group-item-light"><Link to="/WaveFormTest">Waves</Link></li> */}
-              <li className="list-group-item list-group-item-light"><Link to="/MusicUpload">Music Upload</Link></li>
-              <li className="list-group-item list-group-item-light"><Link to="/SongTest">Song Test</Link></li>
+              <li className="list-group-item list-group-item-primary"><Link to="/MusicUpload">Music Upload</Link></li>
+              {/* <li className="list-group-item list-group-item-light"><Link to="/SongTest">Song Test</Link></li> */}
 
           
         </ul>
@@ -69,7 +68,6 @@ function App() {
           <Route path="/" element={ <MusicBox />} />
           <Route path="/MusicList" element={ <MusicList />} />
           <Route path="/MusicShowAll" element={ <MusicShowAll supabase={supabase}/>} />
-          <Route path="/PomodoroTimer" element={ <PomodoroTimer />} />
           <Route path="/MusicPlayer" element={ <MusicPlayer supabase={supabase}/>} />
           <Route path="/WaveFormTest" element={ <WaveFormTest />} />
           <Route path="/MusicUpload" element={ <MusicUpload supabase={supabase}/>} />
