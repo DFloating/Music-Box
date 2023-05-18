@@ -1,7 +1,6 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { createClient } from '@supabase/supabase-js'
+import { createClient } from '@supabase/supabase-js';
 import MusicPlayer from './MusicPlayer';
 
 const supabase = createClient(
@@ -10,46 +9,44 @@ const supabase = createClient(
 );
 
 const MusicList = () => {
-    // Define state variables
-    const [searchTerm, setSearchTerm] = useState('');
-    const [musicList, setMusicList] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [musicList, setMusicList] = useState([]);
 
-    const handleChange = (e) => {
-      setSearchTerm(e.target.value);
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+    
+  };
 
+  useEffect(() => {
+    const handleSearch = async () => {
+        const { data, error } = await supabase
+          .from('songs')
+          .select()
+          .eq('title', `${searchTerm}`)
+          
+  
+        console.log(data);
+        setMusicList(data);
+      
     };
 
-    // Function to handle input change
-    useEffect(() => {
-      const handleSearch = async () => {
-          const { data, error } = await supabase
-            .from('songs')
-            .select()
-            .eq('title', `${searchTerm}`)
-            
-    
-          console.log(data);
-          setMusicList(data);
-        
-      };
-  
-      handleSearch();
-    }, [searchTerm]);
-    
-    return (
-      <div>
-        <input type="text" value={searchTerm} onChange={handleChange} />
-        <button onClick={() => {}}>Find Track</button>
-        {musicList.map((music) => (
-          <div key={music.id}>
-            <h3>{music.title}</h3>
-            <p>{music.artist}</p>
-            <p>{music.genre}</p>
-          </div>
-        ))}
-        {/* <MusicPlayer /> */}
-      </div>
-    );
-  };
-  
+    handleSearch();
+  }, [searchTerm]);
+
+  return (
+    <div>
+      <input type="text" value={searchTerm} onChange={handleChange} />
+      <button onClick={() => {}}>Find Track</button>
+      {musicList.map((music) => (
+        <div key={music.id}>
+          <h3>{music.title}</h3>
+          <p>{music.artist}</p>
+          <p>{music.genre}</p>
+        </div>
+      ))}
+      {/* <MusicPlayer /> */}
+    </div>
+  );
+};
+
 export default MusicList;
