@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import SongTest from './SongTest';
+import MusicList from './MusicList';
 
 const MusicShowAll = ({supabase}) => {
   const [songs, setSongs] = useState([]);
@@ -43,19 +44,8 @@ const MusicShowAll = ({supabase}) => {
     )
     
   })
-   // Function to handle input change
-const handleChange = (e) => {
-  setSearchTerm(e.target.value);
-};
 
 
-
-// Function to handle search
-const handleSearch = () => {
-  // Call an API or fetch data from the server
-  // Filter the data based on the search term
-  // Set the filtered music list to the state
-};
 
   return (
     <div className="music-list">
@@ -77,8 +67,7 @@ const handleSearch = () => {
 
               </div>
               <div className='musicSearch'>
-                <input type="text" value={searchTerm} onChange={handleChange} />
-                  <button onClick={handleSearch}>Find Track</button>
+               <MusicList/>
               </div>
               <div className='musicList'>
                 <h2>List of Songs</h2>

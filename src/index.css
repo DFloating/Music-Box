@@ -2,6 +2,22 @@
   border: 0.1px solid yellow;
 } */
 
+.app {
+  width: 350px;
+  margin: 0 auto;
+}
+
+.scroller {
+  margin: 0 auto;
+  height: 300px;
+  width: 300px;
+  overflow: auto;
+}
+
+.item {
+  margin: 30px 0;
+}
+
 body {
   background-image: url('/public/DBZ1.jpg');
   background-repeat: no-repeat;
