@@ -87,5 +87,3 @@ const handleSearch = () => {
 };
 
 export default MusicShowAll;
-
-

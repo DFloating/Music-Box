@@ -6,36 +6,66 @@ const SongTest = ({supabase, songName}) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [tracks, setTracks] = useState([]);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+  const [sound, setSound] = useState(null);
 
-  console.log(songName);
+ 
   useEffect(() => {
-    const publicUrl = supabase
-    .storage
-    .from('MP3')
-    .getPublicUrl(songName)
-    setSongLink(publicUrl.data.publicUrl);
-    console.log(publicUrl);
-  }, [])
+    const fetchSongLink = async () => {
+      const { data, error } = await supabase.storage
+        .from('MP3')
+        .getPublicUrl(songName);
+      if (error) {
+        console.error('Error fetching song link:', error.message);
+        return;
+      }
+      setSongLink(data.publicUrl);
+    };
+    fetchSongLink();
+  }, [songName]);
 
-  let sound = new Howl({
-    src: [songLink],
-    html5: true,
-  })
+  useEffect(() => {
+    if (sound) {
+      sound.stop();
+      sound.unload();
+    }
+
+    if (songLink) {
+      const newSound = new Howl({
+        src: [songLink],
+        html5: true,
+        
+      });
+      setSound(newSound);
+    }
+  }, [songLink]);
+
+  const handlePlaySong = () => {
+    if (soundPlay && typeof soundPlay === 'function') {
+      soundPlay();
+    }
+  };
+
+
 
   const soundPlay = () => {
-    if (!sound.playing()) {
+    if (sound && !sound.playing()) {
       sound.play();
     }
   };
+
   const soundStop = () => {
-    console.log(sound.playing())
-    sound.stop();
-    setIsPlaying(false);
+    if (sound && sound.playing()) {
+      sound.stop();
+      setIsPlaying(false);
+    }
   };
+
   const soundPause = () => {
+    if (sound && sound.playing()) {
       sound.pause();
+      setIsPlaying(false);
+    }
   };
-  
     return (
       <div className="component">
         <div>
@@ -58,7 +88,7 @@ const SongTest = ({supabase, songName}) => {
             <button className="btn btn-secondary">
               Back
             </button>
-              <button className="btn btn-warning btn-lg" onClick={soundPlay} > 
+              <button className="btn btn-warning btn-lg" onClick={handlePlaySong} > 
                 Play
             </button>
 
@@ -79,4 +109,8 @@ const SongTest = ({supabase, songName}) => {
 }
 
 export default SongTest;
+
+
+
+
 
