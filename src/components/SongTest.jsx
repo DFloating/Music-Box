@@ -1,5 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import {Howl} from 'howler';
+import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai"; // icons for play and pause
+import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";  // icons for next and previous track
+import { IconContext } from "react-icons"; // for customising the icons
 
 const SongTest = ({supabase, songName, title, artist}) => {
   const [songLink, setSongLink] = useState(""); 
@@ -97,17 +100,24 @@ const SongTest = ({supabase, songName, title, artist}) => {
           </div>
           <div>
             <button className="btn btn-secondary" onClick={slowBackward}>
-              Rewind
+              <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
+                    <BiSkipPrevious />
+                  </IconContext.Provider>
             </button>
               <button className="btn btn-warning btn-lg" onClick={handlePlaySong} > 
-                Play
+              <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
+                    <AiFillPlayCircle />
+                  </IconContext.Provider>
             </button>
-
           <button className="btn btn-danger" onClick={soundPause} >
-            Pause
+              <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
+                    <AiFillPauseCircle />
+                  </IconContext.Provider>
             </button>
         <button className="btn btn-secondary" onClick={fastForward} >
-            forward
+              <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
+                    <BiSkipNext />
+                  </IconContext.Provider>
         </button>
         <button onClick={soundStop}>Stop song</button>
 
