@@ -1,0 +1,23 @@
+form {
+  width: 60%;
+  margin: 20px 5px;
+  background-color: aliceblue;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: left;
+}
+
+input{
+  width: 100%;
+  display: block;
+}
+
+label {
+  display: block;
+  margin: 10px 0;
+}
+
+.submit {
+  background-color: rgba(0, 0, 255, 0.556);
+  margin: 10px 0 0 0;
+}
