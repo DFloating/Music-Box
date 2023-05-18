@@ -57,7 +57,7 @@ const MusicUpload = ({supabase}) => {
     };
 
   return(
-    <div>
+    <div className="Form">
       <form onSubmit={uploadSong}> 
         <label>Title of Songs</label>
         <input type="text" name="title" required onChange={handleFormText} />

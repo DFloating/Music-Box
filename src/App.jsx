@@ -48,7 +48,7 @@ function App() {
   return (
     <div className="routes">  
       <BrowserRouter>
-      <div className="nav test">
+      <div className="navtest">
         <ul className="list-group list-group-horizontal">
           
               <li className="list-group-item list-group-item-primary"><Link to="/">Music Box</Link></li>

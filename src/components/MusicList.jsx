@@ -35,7 +35,9 @@ const MusicList = () => {
 
   return (
     <div>
+      <div class="Searchbar">
       <input type="text" value={searchTerm} onChange={handleChange} />
+      </div>
       <button onClick={() => {}}>Find Track</button>
       {musicList.map((music) => (
         <div key={music.id}>

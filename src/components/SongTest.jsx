@@ -3,9 +3,7 @@ import {Howl} from 'howler';
 import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai"; // icons for play and pause
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";  // icons for next and previous track
 import { IconContext } from "react-icons"; // for customising the icons
-import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai"; // icons for play and pause
-import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";  // icons for next and previous track
-import { IconContext } from "react-icons"; // for customising the icons
+
 
 const SongTest = ({supabase, songName, title, artist}) => {
   const [songLink, setSongLink] = useState(""); 
@@ -83,45 +81,42 @@ const SongTest = ({supabase, songName, title, artist}) => {
     sound.seek(Math.max(sound.seek() - skipAmount, 0));
   };
 
-    return (
-      <div className="component">
-        <div>
-        <div className="grid">
-        <div className="component">
-          <h2 className="display-6">Playing Now</h2>
-          <img
-            className="musicCover"
-            src="https://picsum.photos/200/200" // to be replaced with spotify artist image
-          />
-        </div>
-      <div className="main">
-        <div className="information">
-            <h3 className="display-5">{title}</h3>
-            <p className="subTitle">{artist}</p>
-        </div>
-          <div>
-          </div>
-          <div>
-            <button className="btn btn-secondary" onClick={slowBackward}>
-              Rewind
-            </button>
-              <button className="btn btn-warning btn-lg" onClick={handlePlaySong} > 
-                Play
-            </button>
+  return (
 
-          <button className="btn btn-danger" onClick={soundPause} >
-            Pause
-            </button>
-        <button className="btn btn-secondary" onClick={fastForward} >
-            forward
-        </button>
-        <button onClick={soundStop}>Stop song</button>
-
-      </div>
-     </div>
-    </div>
-  </div>                  
-      </div>                                                           
+      <div className="parent card">
+              <div className="component">
+                <h4 className="display-6">Playing Now</h4>
+                  <img
+                  className="musicCover"
+                  src="https://picsum.photos/200/200" // to be replaced with spotify artist image
+                  />
+                <p className="display-5">{title}</p>
+                <p className="display-7">{artist}</p>                
+              </div>
+        <div className="main">
+                <button className="btn btn-secondary" onClick={slowBackward}>
+                  <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
+                  <BiSkipPrevious />
+                  </IconContext.Provider>
+                </button>
+                <button className="btn btn-warning" onClick={handlePlaySong} > 
+                  <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
+                  <AiFillPlayCircle />
+                  </IconContext.Provider>
+                </button>
+                <button className="btn btn-danger" onClick={soundPause} >
+                  <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
+                  <AiFillPauseCircle />
+                  </IconContext.Provider>
+                </button>
+                <button className="btn btn-secondary" onClick={fastForward} >
+                  <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
+                  <BiSkipNext />
+                  </IconContext.Provider>
+                </button>
+                <button onClick={soundStop}>Stop song</button>
+        </div>                  
+      </div>                                                        
     );
 }
 
