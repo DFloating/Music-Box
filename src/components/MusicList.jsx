@@ -3,6 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import MergedComponent from './MergedComponent';
+import MusicPlayer from './MusicPlayer';
 
 const MusicList = () => {
     // Define state variables
@@ -42,6 +43,7 @@ const handleSearch = () => {
             <p>{music.genre}</p>
           </div>
         ))}
+       <MusicPlayer /> 
       </div>
     );
   };

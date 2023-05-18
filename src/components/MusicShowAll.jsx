@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import MergedComponent from './MergedComponent';
 import SongTest from './SongTest';
+import MusicPlayer from './MusicPlayer';
 
 const MusicShowAll = ({supabase}) => {
   const [songs, setSongs] = useState([]);
@@ -56,24 +57,26 @@ const handleSearch = () => {
 };
 
   return (
-    <div className="music-list">
-      <input type="text" value={searchTerm} onChange={handleChange} />
-        <button onClick={handleSearch}>Find Track</button>
-      <h2>List of Songs</h2>
-      {songList}
-      <button onClick={() => setCurrentSong('')}>stop</button>
-      {currentSong != '' && <SongTest supabase={supabase} songName={currentSong}/>}
+      <div>          
+          <div className='grid'>
+            
+              <div className="music-list">
+                <MusicPlayer supabase={supabase} />
+              </div>
+              <div className='musicSearch'>
+                <input type="text" value={searchTerm} onChange={handleChange} />
+                  <button onClick={handleSearch}>Find Track</button>
+              </div>
+              <div className='musicList'>
+                <h2>List of Songs</h2>
+                    {songList}
+                    <button onClick={() => setCurrentSong('')}>stop</button>
+                    {currentSong != '' && <SongTest supabase={supabase} songName={currentSong}/>}
+              </div>
+          
+          </div>
 
-      {/* <ul>
-        {songs.map((song, index) => (
-          <li key={index}>
-            <a href={song.url} target="_blank" rel="noopener noreferrer">
-              {song.name}
-            </a>
-          </li>
-        ))}
-      </ul> */}
-    </div>
+      </div>
   );
 };
 
