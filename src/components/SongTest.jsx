@@ -7,6 +7,7 @@ const SongTest = ({supabase, songName}) => {
   const [tracks, setTracks] = useState([]);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
 
+  console.log(songName);
   useEffect(() => {
     const publicUrl = supabase
     .storage
@@ -22,7 +23,6 @@ const SongTest = ({supabase, songName}) => {
   })
 
   const soundPlay = () => {
-    console.log(sound.playing())
     if (!sound.playing()) {
       sound.play();
     }
@@ -30,6 +30,7 @@ const SongTest = ({supabase, songName}) => {
   const soundStop = () => {
     console.log(sound.playing())
     sound.stop();
+    setIsPlaying(false);
   };
   const soundPause = () => {
       sound.pause();
@@ -37,13 +38,43 @@ const SongTest = ({supabase, songName}) => {
   
     return (
       <div className="component">
-        
+        <div>
+        <div className="grid">
+        <div className="component">
+          <h2 className="display-6">Playing Now</h2>
+          <img
+            className="musicCover"
+            src="https://picsum.photos/200/200" // to be replaced with spotify artist image
+          />
+        </div>
+      <div className="main">
+        <div className="information">
+            <h3 className="display-5">{songName}</h3>
+            <p className="subTitle">RoveRanger</p>
+        </div>
+          <div>
+          </div>
+          <div>
+            <button className="btn btn-secondary">
+              Back
+            </button>
+              <button className="btn btn-warning btn-lg" onClick={soundPlay} > 
+                Play
+            </button>
 
-<button onClick={soundPlay}>play song from supabase Url</button>
-<button onClick={soundPause}>pause song from supabase Url</button>
-<button onClick={soundStop}>Stop song from supabase Url</button>
+          <button className="btn btn-danger" onClick={soundPause} >
+            Pause
+            </button>
+        <button className="btn btn-secondary" >
+            forward
+        </button>
+        <button onClick={soundStop}>Stop song</button>
 
-  </div>                                                           
+      </div>
+     </div>
+    </div>
+  </div>                  
+      </div>                                                           
     );
 }
 
