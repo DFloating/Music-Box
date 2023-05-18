@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import SongTest from './SongTest';
-import MusicPlayer from './MusicPlayer';
 
 const MusicShowAll = ({supabase}) => {
   const [songs, setSongs] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [currentSong, setCurrentSong] = useState('');
+  const [currentSong, setCurrentSong] = useState(null);
 
   const handleSongClick = (e) => {
-    setCurrentSong('');
+    setCurrentSong(null);
     setCurrentSong(e.target.value);
     console.log(e.target.value);
   }
@@ -56,11 +55,19 @@ const handleSearch = () => {
 };
 
   return (
+    <div className="music-list">
+
+      <input type="text" value={searchTerm} onChange={handleChange} />
+        <button onClick={handleSearch}>Find Track</button>
+      <h2>List of Songs</h2>
+      {songList}
+      <button onClick={() => setCurrentSong(null)}>stop</button>
       <div>          
           <div className='grid'>
             
               <div className="music-list">
-                <MusicPlayer supabase={supabase} />
+                {currentSong != null && <SongTest supabase={supabase} songName={currentSong}/>}
+
               </div>
               <div className='musicSearch'>
                 <input type="text" value={searchTerm} onChange={handleChange} />
@@ -70,15 +77,13 @@ const handleSearch = () => {
                 <h2>List of Songs</h2>
                     {songList}
                     <button onClick={() => setCurrentSong('')}>stop</button>
-                    {currentSong != '' && <SongTest supabase={supabase} songName={currentSong}/>}
               </div>
           
           </div>
 
       </div>
+    </div>
   );
 };
 
 export default MusicShowAll;
-
-
