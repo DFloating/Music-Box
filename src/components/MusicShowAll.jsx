@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import SongTest from './SongTest';
-import MusicPlayer from './MusicPlayer';
+import MusicList from './MusicList';
+
+
 
 const MusicShowAll = ({supabase}) => {
   const [songs, setSongs] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentSong, setCurrentSong] = useState('');
+  const [currentSongMp3, setCurrentSongMp3] = useState(null);
+  const [currentSongTitle, setCurrentSongTitle] = useState('');
+  const [currentSongArtist, setCurrentSongArtist] = useState('');
 
-  const handleSongClick = (e) => {
-    setCurrentSong('');
-    setCurrentSong(e.target.value);
-    console.log(e.target.value);
+  const handleSongClick = (song) => {
+    console.log(song);
+    setCurrentSongMp3(song.mp3);
+    setCurrentSongTitle(song.title);
+    setCurrentSongArtist(song.artist);
   }
 
   useEffect(() => {
@@ -57,19 +63,22 @@ const handleSearch = () => {
 
   return (
       <div>          
-          <div className='grid'>
+          
               
-              <MusicPlayer supabase={supabase} />
+              <SongTest supabase={supabase} songName={currentSong} />
+
+           <div className="grid">
               
-              <div className='musicSearch'>
-                <input type="text" value={searchTerm} onChange={handleChange} />
-                  <button onClick={handleSearch}>Find Track</button>
+              <div className="musicSearch card">
+              
+              <MusicList />
+
               </div>
-              <div className='musicList'>
+              <div className="musicList card">
                 <h2>List of Songs</h2>
                     {songList}
                     <button onClick={() => setCurrentSong('')}>stop</button>
-                    {currentSong != '' && <SongTest supabase={supabase} songName={currentSong}/>}
+                    {/* {currentSong != '' && <SongTest supabase={supabase} songName={currentSong}/>} */}
               </div>
           
           </div>
