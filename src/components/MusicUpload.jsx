@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./../css/MusicUpload.css"
 
 const MusicUpload = ({supabase}) => {
   const [songEntry, setSongEntry] = useState({
@@ -65,7 +66,7 @@ const MusicUpload = ({supabase}) => {
         <input type="text" name="genre" onChange={handleFormText} />
         <label>File Name</label>
         <input type="file" name="mp3" accept=".mp3,audio/*" required onChange={handleFileSelected} />
-        <button type="submit">Submit Song</button>
+        <button class="submit" type="submit">Submit Song</button>
         <p>{submitStatus && "You have submitted a song"}</p>
       </form>
     </div>
