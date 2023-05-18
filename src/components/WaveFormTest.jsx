@@ -236,7 +236,7 @@ const WaveFormTest = () => {
           </IconContext.Provider>
         </button>
       </div>
-      <div ref={waveformRef}></div> {/* Render the waveform visualization */}
+      <div ref={waveformRef}></div> Render the waveform visualization
       <div className="volume-control">
   <input
     type="range"
@@ -250,7 +250,7 @@ const WaveFormTest = () => {
     // onChange={handleVolumeChange}
     onChange={(e) => setCurrentVolume(e.target.value)}
   />
-</div>
+    </div>
     </div> 
     );
   };
