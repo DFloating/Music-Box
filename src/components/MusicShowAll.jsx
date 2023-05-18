@@ -58,10 +58,9 @@ const handleSearch = () => {
   return (
       <div>          
           <div className='grid'>
-            
-              <div className="music-list">
-                <MusicPlayer supabase={supabase} />
-              </div>
+              
+              <MusicPlayer supabase={supabase} />
+              
               <div className='musicSearch'>
                 <input type="text" value={searchTerm} onChange={handleChange} />
                   <button onClick={handleSearch}>Find Track</button>

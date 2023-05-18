@@ -24,28 +24,20 @@ body {
   display: grid;
   /* border: 0.1px solid yellow; */
   color: white;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 0.5fr);
-  grid-column-gap: 15px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 0px;
   grid-row-gap: 0px;
   }
   
-  .component { grid-area: 2 / 1 / 3 / 2; }
-  .main { grid-area: 2 / 2 / 3 / 3; 
-    border: 0.1px solid yellow;}
-  .musicSearch { grid-area: 3 / 1 / 4 / 2; 
-    border: 0.1px solid yellow;}
-  .musicList { grid-area: 3 / 2 / 4 / 3; 
-    border: 0.1px solid yellow;}
+.component { grid-area: 1 / 1 / 2 / 2; }
+.main { grid-area: 1 / 2 / 2 / 3; 
+  border: 0.1px solid yellow;}
+.musicSearch { grid-area: 2 / 1 / 3 / 2; 
+  border: 0.1px solid yellow;}
+.musicList { grid-area: 2 / 2 / 3 / 3; 
+  border: 0.1px solid yellow;}
   
-/* h2{
-  text-align: center;
-}
-
-h3 {
-  text-align:  center;
-} */
-
 
 .component {
   background-color: rgba(240, 240, 240, 0.3);
