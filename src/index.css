@@ -32,8 +32,9 @@ body {
   min-height: 800px;
 }
 
-.test{
+.test .active{
   text-align: center;
+  background-color: #c7d4e0;
 }
 
 .grid {
