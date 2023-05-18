@@ -17,6 +17,16 @@ const MusicShowAll = ({supabase}) => {
     setCurrentSongArtist(song.artist);
   }
 
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSearch = () => {
+    // Call an API or fetch data from the server
+    // Filter the data based on the search term
+    // Set the filtered music list to the state
+  };
+
   useEffect(() => {
     const selectAll = async () => {
       const { data, error } = await supabase.from('songs').select();
