@@ -124,9 +124,9 @@ const MusicPlayer = () => {
   // };
   
     return (
-      <div>
+    
 
-        {/* <div className="grid"> */}
+        <div className="parent">
 
           <div className="component">
                 <h2 className="display-6">Playing Now</h2>
@@ -200,9 +200,9 @@ const MusicPlayer = () => {
                   />
                 </div>
           </div>
-        {/* </div> */}
+        </div>
 
-      </div>                                                           
+                                                             
     );
 }
 
