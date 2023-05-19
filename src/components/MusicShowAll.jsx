@@ -49,7 +49,7 @@ const MusicShowAll = ({supabase}) => {
     
     return (
       <div key={song.id}>
-        <h3>Title -{song.title}</h3>
+        <h3>{song.title}</h3>
         <h4>Artist -{song.artist}</h4>
         <p>Genre -{song.genre}</p>
         <button onClick={() => handleSongClick(song)}>Load - {song.title}</button>
@@ -72,7 +72,7 @@ const MusicShowAll = ({supabase}) => {
             </div>
             <div className="grid">              
               <div className="musicSearch">              
-                <MusicList />
+                <MusicList callback={handleSongClick} />
               </div>
               <div className="musicList">
                 <h2>List of Songs</h2>

@@ -8,7 +8,7 @@ const supabase = createClient(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1sa2V5eGFzd2VtaXJkYnV2YXlqIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY4NDEzMjIyMiwiZXhwIjoxOTk5NzA4MjIyfQ.JcfoyFRW8NWBEnmVtyj5icn4exRS0fuUWeJKzKqZhDA"
 );
 
-const MusicList = () => {
+const MusicList = ({callback}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [musicList, setMusicList] = useState([]);
 
@@ -44,6 +44,7 @@ const MusicList = () => {
           <h3>{music.title}</h3>
           <p>{music.artist}</p>
           <p>{music.genre}</p>
+          <button onClick={callback(music)}>Load - {music.title}</button>
         </div>
       ))}
       {/* <MusicPlayer /> */}
