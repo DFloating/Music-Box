@@ -16,6 +16,12 @@ const supabase = createClient("https://mlkeyxaswemirdbuvayj.supabase.co", "eyJhb
 function App() {
   const [songs, setSongs] = useState([]);
 
+  const bgArr = ['background1', 'background2'];
+  useEffect(() => {
+    let index = Math.floor(Math.random() * bgArr.length);
+    document.body.classList.add(bgArr[index]);
+  }, []);
+
   useEffect(() => {
     getSongs();
   }, []);

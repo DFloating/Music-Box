@@ -18,9 +18,16 @@ overflow: auto;
 margin: 30px 0;
 }
 
+.background1 {
+background-image: url('DBZ1.jpg');
+}
+
+.background2 {
+  background-image: url('dbz.jpg');
+  }
+
 
 body {
-background-image: url('/public/DBZ1.jpg');
 background-repeat: no-repeat;
 background-size: cover;
 background-attachment: fixed;
