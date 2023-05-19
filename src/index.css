@@ -35,12 +35,10 @@ text-align: center;
 margin: 0;
 place-items: center;
 min-width: 320px;
-min-height: 800px;
+min-height: 1000px;
 }
 
-/* .test{
-text-align: center;
-} */
+
 
 /* home page intro  */
 
@@ -55,7 +53,7 @@ color: #27ae60;
 }
 
 .Intro p{
-color: lawngreen;
+color: rgb(0, 239, 252);
 width: 90%;
 }
 
@@ -94,7 +92,7 @@ padding-bottom: 2em;
 
 .display-6{
 color: white;
-background-color: #31714c;
+background-color: yellowgreen;
 transform: scale(0.8);
 }
 
@@ -102,7 +100,7 @@ transform: scale(0.8);
 grid-area: 1 / 2 / 2 / 3; 
 display: grid;
 transform: scale(0.65);
-opacity: 0.75;
+opacity: 0.95;
 }
 
 
@@ -127,8 +125,8 @@ position: relative;
 text-decoration: underline;
 position: sticky;
 top: 0;
-background-color: #31714c;
-opacity: 0.7;
+background-color: yellowgreen;
+opacity: 0.85;
 }
 
 .Form {
@@ -160,6 +158,9 @@ padding-bottom: 2em;
 /* display: table-cell; */
 }
 
+.Jordy {
+  font-style: italic;
+}
 
 .information{
 display: flex;
@@ -246,8 +247,8 @@ outline: 4px auto -webkit-focus-ring-color;
 :root {
   color: #213547;
   background-color: #ffffff;
-}
-a:hover {
+} 
+ a:hover {
   color: #747bff;
 }
 button {
