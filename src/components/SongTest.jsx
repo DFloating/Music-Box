@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import {Howl} from 'howler';
 import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai"; // icons for play and pause
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";  // icons for next and previous track
+import { BsFillStopCircleFill } from "react-icons/bs";
 import { IconContext } from "react-icons"; // for customising the icons
 
 
@@ -114,7 +115,11 @@ const SongTest = ({supabase, songName, title, artist}) => {
                   <BiSkipNext />
                   </IconContext.Provider>
                 </button>
-                <button onClick={soundStop}>Stop song</button>
+                <button className="btn btn-danger" onClick={soundStop}>
+                  <IconContext.Provider value={{ size: "3em", color: "#F0F8FF" }}>
+                  <BsFillStopCircleFill />
+                  </IconContext.Provider>
+                </button>
         </div>                  
       </div>                                                        
     );
