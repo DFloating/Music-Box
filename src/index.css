@@ -48,7 +48,7 @@ color: #27ae60;
 }
 
 .Intro p{
-color: lawngreen;
+color: rgb(0, 239, 252);
 width: 90%;
 }
 
@@ -153,6 +153,9 @@ padding-bottom: 2em;
 /* display: table-cell; */
 }
 
+.Jordy {
+  font-style: italic;
+}
 
 .information{
 display: flex;
