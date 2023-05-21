@@ -1,6 +1,21 @@
 # :musical_note: Music-Box :loud_sound:
 featuring JordyJord, Genie-theCoolKat, Josh the unnamed & Dfloaty
 
+## Instructions
+
+In the terminal, run
+```
+git clone https://github.com/DFloating/Music-Box.git
+```
+cd into the folder, then run:
+```
+npm install
+npm run dev
+```
+Open your browser and type url https://localhost:5173/ (or whichever local server specified on your terminal)
+
+
+
 ## How to Use this Music Box?
 
 * Upload your songs on the Music Upload tab! 
@@ -31,7 +46,11 @@ Friday 19/5/23 - Final tweaks before demo
 ## Hurdles & Challenges :mute:
 
 * Attempted to incorporate both Spotify and Soundcloud APIs over the weekend, but had issues with obtaining music tracks to play and OAuth respectively
-* Conflicts during push/pull which occasionally resulted in broken parts and headaches - lots of constant bug fixing, especially towards submission date when the file was getting bigger with more constantly moving parts
+* Conflicts during push/pull which resulted in broken parts and headaches fairly often - lots of constant bug fixing, especially towards submission date when the file was getting bigger with more constantly moving parts
 * Having to combine/merge work done separately onto one page/functionality - and getting that to work 
+
+## Side note
+* Certain routes remain on the App.jsx page as a preview of what it was like during the course of development, but not displayed on the nav bar in the final product. 
+* The WaveFormTest component page still functions. However, the MusicPlayer does not, but previously did. The plan was to combine WaveFormTest's and MusicPlayer's features all in one, and continue developing features from there onwards. However, that plan was put aside. 
 
 
